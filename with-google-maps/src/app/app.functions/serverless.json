@@ -4,7 +4,7 @@
   "appFunctions": {
     "maps": {
       "file": "maps.js",
-      "secrets": ["GOOGLE_MAPS"]
+      "secrets": ["GOOGLE_MAPS_API_KEY"]
     }
   }
 }

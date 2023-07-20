@@ -28,7 +28,7 @@ exports.main = async (context = {}, sendResponse) => {
           '&markers=color:0xfe7a59|' +
           markers +
           '&zoom=12&size=600x300&key=' +
-          GOOGLE_MAPS,
+          GOOGLE_MAPS_API_KEY,
         alt: 'Google map image',
         onClick: {
           type: 'IFRAME',
@@ -89,7 +89,7 @@ exports.main = async (context = {}, sendResponse) => {
 
 // ================== vvvv  Helper functions  vvvv =====================
 
-const { GOOGLE_MAPS } = process.env;
+const { GOOGLE_MAPS_API_KEY } = process.env;
 
 const googleMaps = new Client({});
 
@@ -97,14 +97,14 @@ const defaultOptions = { type: 'restaurant', radius: 2500 /* meters */ };
 
 async function getNearbyPlaces(location, limit = 3, options = defaultOptions) {
   const places = await googleMaps.placesNearby({
-    params: { location, key: GOOGLE_MAPS, ...options },
+    params: { location, key: GOOGLE_MAPS_API_KEY, ...options },
   });
 
   return places.data.results.slice(0, limit);
 }
 
 function getMapUrl(location) {
-  return `https://www.google.com/maps/embed/v1/place?key=${GOOGLE_MAPS}&q=${encodeURIComponent(
+  return `https://www.google.com/maps/embed/v1/place?key=${GOOGLE_MAPS_API_KEY}&q=${encodeURIComponent(
     location
   )}`;
 }
